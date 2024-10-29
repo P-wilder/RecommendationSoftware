@@ -1,88 +1,151 @@
 class node:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
-        self.prev = None
-        
-class linkedlist:
-    def __init__(self):
-        self.head = None
-        self.tail = None
-        self.size = 0
-    
-    def __str__(self):
-            current_node = self.head
-            str = ""
-            if self.size > 1:
-                for i in range(self.size - 1):
-                    str += "{0}, ".format(current_node.value)
-                    current_node = current_node.next
-            str += "{0}".format(current_node.value)
-            return str
-    
-    def size(self):
-        return self.size
-    
-    def first(self):
-        return self.head
-    
-    def last(self):
-        return self.tail
-    
-    def isEmpty(self):
-        if self.head == None:
-            return True
-        else:
-            return False
-        
+        def __init__(self, value):
+                self.value = value
+                self.next = None
+                self.prev = None
 
-    def addToFront(self, value):
-        n = node(value)
-        if self.head == None:
-            self.head = n
-            self.tail = n
-            self.size += 1
-        else:
-            n.next = self.head
-            self.head.prev = n
-            self.head = n
-            self.size += 1
-            
-    def addToEnd(self, value):
-        n = node(value)
-        if self.isEmpty():
-            self.head = n
-            self.tail = n
-            self.size += 1
-        else:
-            self.tail.next = n
-            n.prev = self.tail
-            self.tail = n
-            self.size += 1
-            
-    def add(self, value):
-        if self.isEmpty():
-            self.addToFront(value)
-        else:
-            self.addToEnd(value)
-    
-    def remove(self, value):
-        if self.isEmpty():
-            return False
-        else:
-            current_node = self.head
-            for i in range(self.size - 1):
-                if current_node.value == value:
-                    last_node = current_node.prev
-                    next_node = current_node.next
-                    last_node.next = next_node
-                    next_node.prev = last_node
-                    self.size -= 1
-                    return True
+class linkedlist:
+
+        def __init__(self):
+                self.head = None
+                self.tail = None
+                self.size = 0
+
+        def __str__(self):
+                        current_node = self.head
+                        str = ""
+                        if self.size > 1:
+                                for i in range(self.size - 1):
+                                        str += "{0}, ".format(current_node.value)
+                                        current_node = current_node.next
+                        str += "{0}".format(current_node.value)
+                        return str
+
+        def size(self):
+                return self.size
+
+        def first(self):
+                return self.head
+
+        def last(self):
+                return self.tail
+
+        def isEmpty(self):
+                if self.head == None:
+                        return True
                 else:
-                    current_node = current_node.next
-            return False
-            
+                        return False
+
+        def makeEmpty(self):
+                """
+                Empties list re-inizilizing it
+		"""
+                self.head = None
+                self.tail = None
+                self.size = 0
+
+        def addToFront(self, value):
+                """
+                Adds node to the start of the list
+
+		Args:
+		    value (Any): value of node added to start of list
+		"""
+                n = node(value)
+                if self.head == None:
+                        self.head = n
+                        self.tail = n
+                        self.size += 1
+                else:
+                        n.next = self.head
+                        self.head.prev = n
+                        self.head = n
+                        self.size += 1
+
+        def addToEnd(self, value):
+                """
+                Adds node to end of list
+
+		Args:
+		    value (Any): Value of node added to end of list
+		"""
+                n = node(value)
+                if self.isEmpty():
+                        self.head = n
+                        self.tail = n
+                        self.size += 1
+                else:
+                        self.tail.next = n
+                        n.prev = self.tail
+                        self.tail = n
+                        self.size += 1
+
+        def add(self, value):
+                """
+                Adds node to the end of list
+
+		Args:
+		    value (Any): The value of the node to be added
+		"""
+                if self.isEmpty():
+                        self.addToFront(value)
+                else:
+                        self.addToEnd(value)
+
+        def removeFromFront(self):
+                """
+                Removes node from front of list
+
+		Returns:
+		    Any: returns the value of the removed node or None if no node
+		"""
+                if self.isEmpty():
+                        return None
+                n = self.head
+                if n.next == None:
+                        self.makeEmpty()
+                        return n.value
+                nnext = n.next
+                nnext.prev = None
+                self.head = nnext
+                self.size -= 1
+                return n.value
+
+
+        def removeFromEnd(self):
+                if self.isEmpty():
+                        return None
+                n = self.tail
+                if self.size == 1:
+                        self.makeEmpty()
+                        return n.value
+                nprev = n.prev
+                self.tail = nprev
+                nprev.next = None
+                self.size -= 1
+                return n.value
+                       
+
+
+        def remove(self, value):
+                if self.isEmpty():
+                        return None
+                else:
+                        n = self.head
+                        if self.size == 1:
+                                self.makeEmpty()
+                                return n.value
+                        for i in range(self.size - 1):
+                                if n.value == value:
+                                        last_node = n.prev
+                                        next_node = n.next
+                                        last_node.next = next_node
+                                        next_node.prev = last_node
+                                        self.size -= 1
+                                        return n.value
+                                n = n.next
+                        return None
+
 LL = linkedlist()
 LL.remove(2)
 LL.add(3)
@@ -94,7 +157,11 @@ LL.add("hey")
 LL.add(3)
 LL.add(2)
 LL.add("hey")
-LL.remove("hey")
+print(LL)
+print(LL.remove("hey"))
 LL.addToFront("hey")
 LL.addToEnd(3)
+print(LL)
+print(LL.removeFromFront())
+print(LL.removeFromEnd())
 print(LL)
