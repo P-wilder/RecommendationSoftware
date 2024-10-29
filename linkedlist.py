@@ -42,8 +42,29 @@ class linkedlist:
                         return True
                 else:
                         return False
+                
+        def mend(self, node):
+                """
+                Mends a hole in a linked list
+
+                Args:
+                    node (node): Node that is being removed
+                """
+                last_node = node.prev
+                next_node = node.next
+                last_node.next = next_node
+                next_node.prev = last_node
         
         def getIdx(self, value):
+                """
+                Finds the first index of a given value
+
+                Args:
+                    value (Any): Value of node you wish to find
+
+                Returns:
+                    int: Index of a node with given value or None if node doesn't exist
+                """
                 if self.isEmpty():
                         return None
                 n = self.head
@@ -120,7 +141,7 @@ class linkedlist:
                 if self.isEmpty():
                         return None
                 n = self.head
-                if n.next == None:
+                if self.size == 1:
                         self.makeEmpty()
                         return n.value
                 nnext = n.next
@@ -170,17 +191,39 @@ class linkedlist:
                                 return n.value
                         for i in range(self.size - 1):
                                 if n.value == value:
-                                        last_node = n.prev
-                                        next_node = n.next
-                                        last_node.next = next_node
-                                        next_node.prev = last_node
+                                        self.mend(n)
                                         self.size -= 1
                                         return n.value
                                 n = n.next
                         return None
                 
         def removeAtIdx(self, idx):
-                pass
+                """
+                Removes node at given index
+
+                Args:
+                    idx (int): Index at which node is to be removed
+
+                Returns:
+                    Any: Return value of node remmoved at index or None if node doesn't exist
+                """
+                if self.isEmpty():
+                        return None
+                n = self.head
+                i = 0
+                if idx == 0:
+                        return self.removeFromFront()
+                if idx == self.size - 1:
+                        return self.removeFromEnd()
+                if idx > self.size - 1:
+                        return None
+                while i < idx:
+                        n = n.next
+                        i += 1
+                self.mend(n)
+                self.size -= 1
+                return n.value
+                
 
 LL = linkedlist()
 LL.remove(2)
