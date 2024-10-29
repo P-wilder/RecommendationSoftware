@@ -1,11 +1,15 @@
+"""
+Author: Persephone Wilder
+"""
+
 class node:
-        def __init__(self, value):
-                self.value = value
+        def __init__(self, data):
+                self.data = data
                 self.next = None
                 self.prev = None
                 
         def __str__(self):
-                str = "({0})".format(self.value)
+                str = "({0})".format(self.data)
                 return str
 
 class linkedlist:
@@ -20,9 +24,9 @@ class linkedlist:
                         str = ""
                         if self.size > 1:
                                 for i in range(self.size - 1):
-                                        str += "{0}, ".format(current_node.value)
+                                        str += "{0}, ".format(current_node.data)
                                         current_node = current_node.next
-                        str += "{0}".format(current_node.value)
+                        str += "{0}".format(current_node.data)
                         return str
 
         def size(self):
@@ -59,24 +63,24 @@ class linkedlist:
                 last_node.next = next_node
                 next_node.prev = last_node
         
-        def getIdx(self, value):
+        def getIdx(self, data):
                 """
-                Finds the first index of a given value
+                Finds the first index of a given data
 
                 Args:
-                    value (Any): Value of node you wish to find
+                    data (Any): data of node you wish to find
 
                 Returns:
-                    int: Index of a node with given value or None if node doesn't exist
+                    int: Index of a node with given data or None if node doesn't exist
                 """
                 if self.isEmpty():
                         return None
                 n = self.head
                 if self.size == 1:
-                        if n.value == value:
+                        if n.data == data:
                                 return 0
                 for i in range(self.size):
-                        if n.value == value:
+                        if n.data == data:
                                 return i
                         n = n.next
                 return None
@@ -89,14 +93,14 @@ class linkedlist:
                 self.tail = None
                 self.size = 0
 
-        def addToFront(self, value):
+        def addToFront(self, data):
                 """
                 Adds node to the start of the list
 
 		Args:
-		    value (Any): value of node added to start of list
+		    data (Any): data of node added to start of list
 		"""
-                n = node(value)
+                n = node(data)
                 if self.isEmpty():
                         self.head = n
                         self.tail = n
@@ -107,84 +111,84 @@ class linkedlist:
                         self.head = n
                         self.size += 1
 
-        def addToEnd(self, value):
+        def addToEnd(self, data):
                 """
                 Adds node to end of list
 
 		Args:
-		    value (Any): Value of node added to end of list
+		    data (Any): data of node added to end of list
 		"""
                 if self.isEmpty():
-                        self.addToFront(value)
+                        self.addToFront(data)
                 else:
-                        n = node(value)
+                        n = node(data)
                         self.tail.next = n
                         n.prev = self.tail
                         self.tail = n
                         self.size += 1
 
-        def add(self, value):
+        def add(self, data):
                 """
                 Adds node to the end of list
 
 		Args:
-		    value (Any): The value of the node to be added
+		    data (Any): The data of the node to be added
 		"""
                 if self.isEmpty():
-                        self.addToFront(value)
+                        self.addToFront(data)
                 else:
-                        self.addToEnd(value)
+                        self.addToEnd(data)
 
         def removeFromFront(self):
                 """
                 Removes node from front of list
 
 		Returns:
-		    Any: value of the removed node or None if no node
+		    Any: data of the removed node or None if no node
 		"""
                 if self.isEmpty():
                         return None
                 n = self.head
                 if self.size == 1:
                         self.makeEmpty()
-                        return n.value
+                        return n.data
                 nnext = n.next
                 nnext.prev = None
                 self.head = nnext
                 self.size -= 1
-                return n.value
+                return n.data
 
 
         def removeFromEnd(self):
                 """
-                Removes value from end of list
+                Removes data from end of list
 
 		Returns:
-		    Any: Value of the removed node or None if no node
+		    Any: data of the removed node or None if no node
 		"""
                 if self.isEmpty():
                         return None
                 n = self.tail
                 if self.size == 1:
                         self.makeEmpty()
-                        return n.value
+                        return n.data
                 nprev = n.prev
                 self.tail = nprev
                 nprev.next = None
                 self.size -= 1
-                return n.value
+                return n.data
                        
 
 
-        def remove(self, value):
+        def remove(self, data):
                 """
-                Removes first node with specified value
+                Removes first node with specified data
 
 		Args:
-		    value (Any): Value of node that is to be removed
+		    data (Any): data of node that is to be removed
 
 		Returns:
-		    Any: Value of the removed node or None if no node
+		    Any: data of the removed node or None if no node
 		"""
                 if self.isEmpty():
                         return None
@@ -192,12 +196,12 @@ class linkedlist:
                         n = self.head
                         if self.size == 1:
                                 self.makeEmpty()
-                                return n.value
+                                return n.data
                         for i in range(self.size - 1):
-                                if n.value == value:
+                                if n.data == data:
                                         self.mend(n)
                                         self.size -= 1
-                                        return n.value
+                                        return n.data
                                 n = n.next
                         return None
                 
@@ -209,7 +213,7 @@ class linkedlist:
                     idx (int): Index at which node is to be removed
 
                 Returns:
-                    Any: Return value of node removed at index or None if node doesn't exist
+                    Any: Return data of node removed at index or None if node doesn't exist
                 """
                 if self.isEmpty():
                         return None
@@ -226,4 +230,4 @@ class linkedlist:
                         i += 1
                 self.mend(n)
                 self.size -= 1
-                return n.value
+                return n.data
