@@ -3,6 +3,10 @@ class node:
                 self.value = value
                 self.next = None
                 self.prev = None
+                
+        def __str__(self):
+                str = "({0})".format(self.value)
+                return str
 
 class linkedlist:
 
