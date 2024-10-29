@@ -71,7 +71,7 @@ class linkedlist:
                 if self.size == 1:
                         if n.value == value:
                                 return 0
-                for i in range(self.size - 1):
+                for i in range(self.size):
                         if n.value == value:
                                 return i
                         n = n.next
@@ -79,7 +79,7 @@ class linkedlist:
 
         def makeEmpty(self):
                 """
-                Empties list re-inizilizing it
+                Empties list re-initializing it
 		"""
                 self.head = None
                 self.tail = None
@@ -177,7 +177,7 @@ class linkedlist:
                 Removes first node with specified value
 
 		Args:
-		    value (Any): Vlaue of node that is to be removed
+		    value (Any): Value of node that is to be removed
 
 		Returns:
 		    Any: Value of the removed node or None if no node
@@ -205,7 +205,7 @@ class linkedlist:
                     idx (int): Index at which node is to be removed
 
                 Returns:
-                    Any: Return value of node remmoved at index or None if node doesn't exist
+                    Any: Return value of node removed at index or None if node doesn't exist
                 """
                 if self.isEmpty():
                         return None
@@ -223,24 +223,3 @@ class linkedlist:
                 self.mend(n)
                 self.size -= 1
                 return n.value
-                
-
-LL = linkedlist()
-LL.remove(2)
-LL.add(3)
-LL.add(2)
-LL.add("hey")
-LL.add(3)
-LL.add(2)
-LL.add("hey")
-LL.add(3)
-LL.add(2)
-LL.add("hey")
-print(LL)
-print(LL.remove("hey"))
-LL.addToFront("hey")
-LL.addToEnd(3)
-print(LL)
-print(LL.removeFromFront())
-print(LL.removeFromEnd())
-print(LL)
