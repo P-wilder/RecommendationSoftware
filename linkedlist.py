@@ -24,7 +24,7 @@ class linkedlist:
                         str = ""
                         if self.size > 1:
                                 for i in range(self.size - 1):
-                                        str += "{0}, ".format(current_node.data)
+                                        str += "{0}".format(current_node.data)
                                         current_node = current_node.next
                         str += "{0}".format(current_node.data)
                         return str
