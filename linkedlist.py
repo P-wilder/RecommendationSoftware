@@ -31,6 +31,13 @@ class linkedlist:
                 return self.tail
 
         def isEmpty(self):
+                """
+                Checks if list is empty
+
+		Returns:
+		    Bool: returns true if list is empty 
+			  returns false if not
+		"""
                 if self.head == None:
                         return True
                 else:
@@ -97,7 +104,7 @@ class linkedlist:
                 Removes node from front of list
 
 		Returns:
-		    Any: returns the value of the removed node or None if no node
+		    Any: value of the removed node or None if no node
 		"""
                 if self.isEmpty():
                         return None
@@ -113,6 +120,12 @@ class linkedlist:
 
 
         def removeFromEnd(self):
+                """
+                Removes value from end of list
+
+		Returns:
+		    Any: Value of the removed node or None if no node
+		"""
                 if self.isEmpty():
                         return None
                 n = self.tail
@@ -128,6 +141,15 @@ class linkedlist:
 
 
         def remove(self, value):
+                """
+                Removes first node with specified value
+
+		Args:
+		    value (Any): Vlaue of node that is to be removed
+
+		Returns:
+		    Any: Value of the removed node or None if no node
+		"""
                 if self.isEmpty():
                         return None
                 else:
