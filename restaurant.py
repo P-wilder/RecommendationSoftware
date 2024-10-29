@@ -6,7 +6,7 @@ class restaurant:
                 self.address = None
                 
         def __str__(self):
-                str = "{0} serves {1} food, it has a score of {2} and it's at {3}".format(self.name, self.type, self.score, self.address)
+                str = "{0} serves {1} food, it has a score of {2} and it's at {3}\n".format(self.name, self.type, self.score, self.address)
                 return str
         
         def getScore(self, score1=0, score2=0):
