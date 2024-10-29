@@ -42,6 +42,19 @@ class linkedlist:
                         return True
                 else:
                         return False
+        
+        def getIdx(self, value):
+                if self.isEmpty():
+                        return None
+                n = self.head
+                if self.size == 1:
+                        if n.value == value:
+                                return 0
+                for i in range(self.size - 1):
+                        if n.value == value:
+                                return i
+                        n = n.next
+                return None
 
         def makeEmpty(self):
                 """
@@ -59,7 +72,7 @@ class linkedlist:
 		    value (Any): value of node added to start of list
 		"""
                 n = node(value)
-                if self.head == None:
+                if self.isEmpty():
                         self.head = n
                         self.tail = n
                         self.size += 1
@@ -76,12 +89,10 @@ class linkedlist:
 		Args:
 		    value (Any): Value of node added to end of list
 		"""
-                n = node(value)
                 if self.isEmpty():
-                        self.head = n
-                        self.tail = n
-                        self.size += 1
+                        self.addToFront(value)
                 else:
+                        n = node(value)
                         self.tail.next = n
                         n.prev = self.tail
                         self.tail = n
@@ -167,6 +178,9 @@ class linkedlist:
                                         return n.value
                                 n = n.next
                         return None
+                
+        def removeAtIdx(self, idx):
+                pass
 
 LL = linkedlist()
 LL.remove(2)
