@@ -20,14 +20,14 @@ class linkedlist:
                 self.size = 0
 
         def __str__(self):
-                        current_node = self.head
-                        str = ""
-                        if self.size > 1:
-                                for i in range(self.size - 1):
-                                        str += "{0}".format(current_node.data)
-                                        current_node = current_node.next
-                        str += "{0}".format(current_node.data)
-                        return str
+                current_node = self.head
+                str = ""
+                if self.size > 1:
+                        for i in range(self.size - 1):
+                                str += "{0}".format(current_node.data)
+                                current_node = current_node.next
+                str += "{0}".format(current_node.data)
+                return str
 
         def size(self):
                 return self.size
@@ -217,14 +217,14 @@ class linkedlist:
                 """
                 if self.isEmpty():
                         return None
+                elif idx > self.size - 1:
+                        return None
                 n = self.head
                 i = 0
                 if idx == 0:
                         return self.removeFromFront()
                 if idx == self.size - 1:
                         return self.removeFromEnd()
-                if idx > self.size - 1:
-                        return None
                 while i < idx:
                         n = n.next
                         i += 1
