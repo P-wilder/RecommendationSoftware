@@ -11,6 +11,9 @@ class node:
         def __str__(self):
                 str = "({0})".format(self.data)
                 return str
+        
+        def getData(self):
+                return self.data
 
 class linkedlist:
 
@@ -29,13 +32,13 @@ class linkedlist:
                 str += "{0}".format(current_node.data)
                 return str
 
-        def size(self):
+        def getSize(self):
                 return self.size
 
-        def first(self):
+        def getFirst(self):
                 return self.head
 
-        def last(self):
+        def getLast(self):
                 return self.tail
 
         def isEmpty(self):
@@ -84,6 +87,32 @@ class linkedlist:
                                 return i
                         n = n.next
                 return None
+        
+        def getData(self, node):
+                return node.data
+        
+        def getAtIdx(self, idx):
+                """
+                Finds and returns node at index
+                
+                Args:
+                    idx (int): The index number of a list
+
+                Returns:
+                    node: A node that contains data
+                """
+                if self.head is None:
+                        return None
+                elif self.size < idx:
+                        return None
+                n = self.head
+                x = 0
+                while x < idx:
+                        n = n.next
+                        x += 1
+                return n
+                        
+                        
 
         def makeEmpty(self):
                 """
